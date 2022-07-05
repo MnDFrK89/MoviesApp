@@ -1,0 +1,31 @@
+<div class="container">
+  <input
+    type="search"
+    class="m-3 w-100 rounded"
+    [value]="query$ | async"
+    placeholder="Search"
+    (keyup.enter)="find($event)"
+  />
+  <br />
+  <div class="col" style="margin-left: 75px">
+    <div
+      *ngFor="let item of search$ | async as search; let i = index"
+      class="card m-3 d-inline-block border border-dark cursor"
+      (click)="loadMovie(item.id, item)"
+      style="width: 18rem"
+    >
+      <img
+        [src]="search | noImages: imagenUrl:i"
+        class="img-thumbnail card-img-top rounded"
+        alt="..."
+      />
+      <div class="card-body">
+        <p class="card-text">
+          {{ item.original_title }}
+          <br />
+          {{ item.release_date }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

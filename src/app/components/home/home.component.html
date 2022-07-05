@@ -1,0 +1,63 @@
+<div class="container-fluid text-start">
+  <h2 class="mt-4">Most Popular</h2>
+  <div
+    class="overflow-auto"
+    style="max-height: 500px; max-width: 100%; white-space: nowrap"
+  >
+    <div
+      (click)="loadMovie(populars[i].id, populars[i])"
+      class="card text-bg-light mb-3 m-2 d-inline-block cursor"
+      [style]="populars | style: i"
+      *ngFor="let item of mostPopulars | async as populars; let i = index"
+    >
+      <div class="card-header text-wrap">{{ populars[i].title }}</div>
+      <div class="card-body img-fluid">
+        <img
+          class="img-thumbnail rounded border border-dark"
+          [src]="populars | noImages:imagenUrl:i"
+          alt=""
+        />
+      </div>
+      <span
+        class="badge rounded-pill text-bg-dark border border-danger"
+        style="position: absolute; margin-top: -20px"
+        >{{ populars[i].popularity | number: "2.2" }} popularity</span
+      >
+      <span
+        class="badge rounded-pill text-bg-primary d-block w-50 mt-1 border border-danger"
+        >{{ populars[i].release_date }}</span
+      >
+    </div>
+  </div>
+  <h2 class="mt-4">Latest Releases</h2>
+
+  <div
+    class="overflow-auto"
+    style="max-height: 500px; max-width: 100%; white-space: nowrap"
+  >
+    <div
+      (click)="loadMovie(latest[i].id, latest[i])"
+      class="card text-bg-light mb-3 m-2 d-inline-block cursor"
+      [style]="latest | style: i"
+      *ngFor="let item of getLatestReleases | async as latest; let i = index"
+    >
+      <div class="card-header text-wrap">{{ latest[i].title }}</div>
+      <div class="card-body img-fluid">
+        <img
+          class="img-thumbnail rounded border border-dark"
+          [src]="latest | noImages:imagenUrl:i"
+          alt=""
+        />
+      </div>
+      <span
+        class="badge rounded-pill text-bg-dark border border-danger"
+        style="position: absolute; margin-top: -20px"
+        >{{ latest[i].popularity | number: "2.2" }} popularity</span
+      >
+      <span
+        class="badge rounded-pill text-bg-primary d-block w-50 mt-1 border border-danger"
+        >{{ latest[i].release_date }}</span
+      >
+    </div>
+  </div>
+</div>

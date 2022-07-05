@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 class="m-3">Detalles de {{ (movie$ | async).title }}</h2>
+  <div *ngIf="movie$ | async as movie" class="card mb-3 w-100">
+    <div class="row g-0">
+      <div class="col-md-3">
+        <img
+          [src]="movie | noImages: imagenUrl"
+          class="img-fluid rounded-start rounded"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.original_title }}</h5>
+          <p class="card-text">
+            {{ movie.overview }}
+          </p>
+          <p class="card-text">
+            <small class="text-muted">{{movie.release_date}}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
